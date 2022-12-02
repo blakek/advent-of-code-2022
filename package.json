@@ -1,0 +1,13 @@
+{
+  "name": "aoc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "repository": "https://github.com/blakek/advent-of-code-2022",
+  "author": "Blake Knight <blake.knight@zapier.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^18.11.10",
+    "ts-node": "^10.9.1"
+  }
+}

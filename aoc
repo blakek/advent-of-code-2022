@@ -112,6 +112,9 @@ aoc() {
 				awk)
 					runCommand="awk -f ${part} ${inputFilePath}"
 					;;
+				typescript)
+					runCommand="ts-node ${part} ${inputFilePath}"
+					;;
 				*)
 					panic "Don't know how to run $language"
 					;;
