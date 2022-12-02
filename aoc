@@ -6,6 +6,11 @@
 
 __dirname="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+panic() {
+	echo "$@" >&2
+	exit 1
+}
+
 showUsage() {
 	cat <<-EOF
 		Usage: aoc <day> <part> [options]
@@ -91,6 +96,10 @@ aoc() {
 	if [[ $language == '' ]]; then
 		# langauge is the first directory in the day directory that's not _input
 		language="$(ls "${__dirname}/day-${day}" | grep -v _input | grep -v README.md | head -n 1)"
+
+		if [[ $language == '' ]]; then
+			panic "No solutions found for day ${day}"
+		fi
 	fi
 
 	dayDir="${__dirname}/day-${day}"
@@ -99,10 +108,12 @@ aoc() {
 
 	for part in $partFilePath; do
 		if [[ -f $part ]]; then
-			runCommand="echo 'Cannot find run command for language $language'"
 			case "$language" in
 				awk)
 					runCommand="awk -f ${part} ${inputFilePath}"
+					;;
+				*)
+					panic "Don't know how to run $language"
 					;;
 			esac
 
