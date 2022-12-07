@@ -1,38 +1,38 @@
 BEGIN {
-    score = 0;
+    score = 0
     
-    drawScore = 3;
-    winningScore = 6;
+    drawScore = 3
+    winningScore = 6
 
-    opponent["A"] = "Rock";
-    opponent["B"] = "Paper";
-    opponent["C"] = "Scissors";
+    opponent["A"] = "Rock"
+    opponent["B"] = "Paper"
+    opponent["C"] = "Scissors"
 
-    move["X"] = "Rock";
-    move["Y"] = "Paper";
-    move["Z"] = "Scissors";
+    move["X"] = "Rock"
+    move["Y"] = "Paper"
+    move["Z"] = "Scissors"
 
-    scoreBoost["Rock"] = 1;
-    scoreBoost["Paper"] = 2;
-    scoreBoost["Scissors"] = 3;
+    scoreBoost["Rock"] = 1
+    scoreBoost["Paper"] = 2
+    scoreBoost["Scissors"] = 3
 }
 
 {
-    opponentMove = opponent[$1];
-    responseMove = move[$2];
-    score += scoreBoost[responseMove];
+    opponentMove = opponent[$1]
+    responseMove = move[$2]
+    score += scoreBoost[responseMove]
 
     didWin = (opponentMove == "Rock" && responseMove == "Paper") ||
              (opponentMove == "Paper" && responseMove == "Scissors") ||
-             (opponentMove == "Scissors" && responseMove == "Rock");
+             (opponentMove == "Scissors" && responseMove == "Rock")
 
     if (didWin) {
-        score += winningScore;
+        score += winningScore
     } else if (opponentMove == responseMove) {
-        score += drawScore;
+        score += drawScore
     }
 }
 
 END {
-    print score;
+    print score
 }

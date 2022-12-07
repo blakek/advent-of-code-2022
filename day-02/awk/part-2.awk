@@ -1,49 +1,49 @@
 BEGIN {
-    score = 0;
+    score = 0
     
-    drawScore = 3;
-    winningScore = 6;
+    drawScore = 3
+    winningScore = 6
 
-    opponent["A"] = "Rock";
-    opponent["B"] = "Paper";
-    opponent["C"] = "Scissors";
+    opponent["A"] = "Rock"
+    opponent["B"] = "Paper"
+    opponent["C"] = "Scissors"
 
-    move["X"] = "Lose";
-    move["Y"] = "Draw";
-    move["Z"] = "Win";
+    move["X"] = "Lose"
+    move["Y"] = "Draw"
+    move["Z"] = "Win"
 
-    scoreBoost["Rock"] = 1;
-    scoreBoost["Paper"] = 2;
-    scoreBoost["Scissors"] = 3;
+    scoreBoost["Rock"] = 1
+    scoreBoost["Paper"] = 2
+    scoreBoost["Scissors"] = 3
 }
 
 function getWinningMove(move) {
     if (move == "Rock") {
-        return "Paper";
+        return "Paper"
     } else if (move == "Paper") {
-        return "Scissors";
+        return "Scissors"
     } else if (move == "Scissors") {
-        return "Rock";
+        return "Rock"
     }
 }
 
 {
-    opponentMove = opponent[$1];
-    response = move[$2];
+    opponentMove = opponent[$1]
+    response = move[$2]
     
     if (response == "Win") {
-        responseMove = getWinningMove(opponentMove);
-        score += winningScore;
+        responseMove = getWinningMove(opponentMove)
+        score += winningScore
     } else if (response == "Lose") {
-        responseMove = getWinningMove(getWinningMove(opponentMove));
+        responseMove = getWinningMove(getWinningMove(opponentMove))
     } else if (response == "Draw") {
-        responseMove = opponentMove;
-        score += drawScore;
+        responseMove = opponentMove
+        score += drawScore
     }
     
-    score += scoreBoost[responseMove];
+    score += scoreBoost[responseMove]
 }
 
 END {
-    print score;
+    print score
 }
