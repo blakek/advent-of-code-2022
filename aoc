@@ -82,7 +82,7 @@ aoc() {
 	done
 
 	# Validate arguments
-	if [[ $day -lt 1 || $day -gt 25 ]]; then
+	if [[ ${day#0} -lt 1 || ${day#0} -gt 25 ]]; then
 		echo "Day must be between 1 and 25"
 		return 1
 	fi
